@@ -1,0 +1,205 @@
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  perspective: 2000px; /* Increased for better 3D effect */
+  margin-top: 20px;
+}
+
+/*
+  Standard US business card: 3.5 × 2 inches (88.9 × 50.8 mm)
+  With bleed area: 3.75 × 2.25 inches (95.25 × 57.15 mm)
+  Using 96 DPI (standard for web): 1 inch = 96px
+  Card dimensions: 336px × 192px (3.5" × 2")
+  With bleed: 360px × 216px (3.75" × 2.25")
+*/
+.business-card-container {
+  /* Standard business card size with bleed area */
+  width: 360px; /* 3.75 inches at 96 DPI */
+  height: 216px; /* 2.25 inches at 96 DPI */
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+  margin-bottom: 10px;
+}
+
+.business-card-container.flipped {
+  transform: rotateY(180deg);
+}
+
+.business-card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  background-color: #1a1a1a;
+  color: #d4d4d4;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.business-card.front {
+  transform: rotateY(0deg);
+  z-index: 2; /* Ensure front is above back when not flipped */
+}
+
+.business-card.back {
+  transform: rotateY(180deg);
+}
+
+.card-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.control-button {
+  padding: 8px 16px;
+  background-color: #2a2a2a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.control-button:hover {
+  background-color: #3a3a3a;
+}
+
+.flip-button {
+  background-color: #4a4a9c;
+}
+
+.flip-button:hover {
+  background-color: #5a5aac;
+}
+
+.print-button {
+  background-color: #4a9c4a;
+}
+
+.print-button:hover {
+  background-color: #5aac5a;
+}
+
+.window-header {
+  display: flex;
+  align-items: center;
+  background-color: #1a1a1a; /* Match the main background */
+  padding: 6px 12px; /* Reduced from 8px to 6px */
+  border-bottom: 1px solid #333;
+}
+
+.window-buttons {
+  display: flex;
+  gap: 8px;
+  margin-right: 15px;
+}
+
+.window-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.window-button.red {
+  background-color: #ff5f56;
+}
+
+.window-button.yellow {
+  background-color: #ffbd2e;
+}
+
+.window-button.green {
+  background-color: #27c93f;
+}
+
+.window-title {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 14px;
+  color: #eee;
+  font-weight: 500;
+}
+
+.window-actions {
+  margin-left: auto;
+  color: #888;
+}
+
+.editor-content {
+  display: flex;
+  padding: 15px 0;
+  height: calc(100% - 40px); /* Adjust for header height */
+  overflow: hidden; /* Changed from auto to hidden to remove scrollbar */
+}
+
+.line-numbers {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  color: #6e7681;
+  text-align: right;
+  min-width: 30px;
+  font-size: 12px; /* Reduced from 14px */
+  line-height: 1.4; /* Reduced from 1.5 */
+}
+
+.code-content {
+  flex-grow: 1;
+  padding-right: 15px;
+  font-size: 12px; /* Reduced from 14px */
+  line-height: 1.4; /* Reduced from 1.5 */
+}
+
+.line {
+  padding: 2px 0;
+  white-space: pre;
+  text-align: left; /* Ensure left alignment */
+}
+
+.line.indent {
+  padding-left: 20px;
+}
+
+.property {
+  color: #e06c75; /* Red for property names */
+  font-weight: 500;
+}
+
+.syntax {
+  color: #abb2bf; /* Light gray for syntax */
+}
+
+.value {
+  color: #e5c07b; /* Yellow for values - more like the example */
+  font-weight: 500;
+}
+
+.qr-code-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.qr-code {
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.qr-code-text {
+  color: #e06c75;
+  font-size: 12px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
